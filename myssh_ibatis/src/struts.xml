@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+ 
+<struts>
+  
+  <!-- 请求参数的编码方式--> 
+
+    <constant name="struts.i18n.encoding" value="UTF-8"/> 
+
+    <!-- 指定被struts2处理的请求后缀类型。多个用逗号隔开--> 
+
+    <constant name="struts.action.extension" value="action,do,htm"/> 
+
+    <!-- 当struts.xml改动后，是否重新加载。默认值为false(生产环境下使用),开发阶段最好打开  --> 
+
+    <constant name="struts.configuration.xml.reload" value="true"/> 
+
+    <!-- 是否使用struts的开发模式。开发模式会有更多的调试信息。默认值为false(生产环境下使用),开发阶段最好打开  --> 
+
+    <constant name="struts.devMode" value="true"/>   
+
+    <!-- 设置浏览器是否缓存静态内容。默认值为true(生产环境下使用),开发阶段最好关闭  --> 
+
+    <constant name="struts.serve.static.browserCache" value="false" /> 
+
+    <!-- 指定由spring负责action对象的创建    
+
+    <constant name="struts.objectFactory" value="spring" /> 
+
+    --> 
+
+    <!-- 是否开启动态方法调用--> 
+
+    <constant name="struts.enable.DynamicMethodInvocation" value="false"/>
+    
+    <constant name="struts.multipart.saveDir" value="/tmp"/>
+    
+  <package name="user" namespace="/user" extends="struts-default">
+  	<action name="pageAction" class="com.git.user.action.PageAction">
+      <result name="success">/page.jsp</result>
+    </action>
+    <action name="userAction" class="com.git.user.action.UserAction">
+      <result name="success">/registerSuccess.jsp</result>
+      <result name="fail">/registerFail.jsp</result>
+      <result name="load">/userLoad.jsp</result>
+    </action>
+  </package>
+  <package name="file" namespace="/file" extends="struts-default">
+  	<action name="*" class="com.gxl.FileUploadAction" method="{1}">
+      <result name="success">/index.jsp</result>
+    </action>
+  </package>
+  <package name="fileper" namespace="/fileper" extends="struts-default">
+  	<action name="*" class="com.gxl.FileUploadPerAction" method="{1}">
+      <result name="success">/index.jsp</result>
+    </action>
+  </package>
+  <package name="test" namespace="/test" extends="struts-default">
+  	<action name="testAction" class="com.gxl.TestAction">
+      <result name="success">/index.jsp</result>
+    </action>
+  </package>
+</struts>

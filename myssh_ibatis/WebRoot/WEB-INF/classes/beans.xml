@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+		 http://www.springframework.org/schema/beans
+         http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+         http://www.springframework.org/schema/context
+         http://www.springframework.org/schema/context/spring-context-3.2.xsd
+		 http://www.springframework.org/schema/aop
+		 http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+		 http://www.springframework.org/schema/tx
+         http://www.springframework.org/schema/tx/spring-tx-3.2.xsd">
+
+	<context:annotation-config />
+	<!-- 组件的扫描包路径，如@Service,@Repository注释的类，才能被spring找到，而spring只有找到这样的单例才能将其注入给需要的其他类使用 -->
+	<context:component-scan base-package="com" />
+	<!-- 
+	<context:property-placeholder location="classpath:config/jdbc.properties"/>
+	 -->
+	<bean id="dataSource"
+		class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url"
+			value="jdbc:mysql://127.0.0.1:3306/mybatis" />
+		<property name="username" value="root" />
+		<property name="password" value="admin" />
+	</bean>
+	<bean id="sqlSessionFactory"
+		class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation"
+			value="classpath:mybatis-config.xml"/>
+		<property name="typeAliasesPackage" value="com.mybatis.model"/>
+	</bean>
+	<!-- 注解方式（原生） 
+	
+	<bean id="userMapper"
+		class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface"
+			value="com.mybatis.dao.UserMapper" />
+		<property name="sqlSessionFactory" ref="sqlSessionFactory" />
+	</bean>
+	<bean id="userService" class="com.mybatis.service.UserService">
+		<property name="userMapper" ref="userMapper" />
+	</bean>-->
+	
+	<!-- 事物管理 -->
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	<!-- MapperScannerConfigurer来帮我们自动扫描和注册Mapper接口,使用逗号或者分号进行分隔 参考：http://haohaoxuexi.iteye.com/blog/1843309-->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.mybatis.dao"/>
+		<!-- MapperScannerConfigurer将只注册继承自markerInterface的接口：http://haohaoxuexi.iteye.com/blog/1843309-->
+		<!-- 
+		<property name="markerInterface" value="com.mybatis.dao.UserMapper"/>
+		 -->  
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+	</bean>
+	<!-- 在Dao中直接使用SqlSessionTemplate来编程 -->
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+       <constructor-arg index="0" ref="sqlSessionFactory" />
+    </bean>
+</beans>
