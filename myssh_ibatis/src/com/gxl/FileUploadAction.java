@@ -1,12 +1,7 @@
 package com.gxl;
 
 import java.io.File;
-import java.io.IOException;
-import java.io.PrintWriter;
 
-import javax.servlet.http.HttpServletResponse;
-
-import org.apache.struts2.convention.annotation.Action;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -75,37 +70,16 @@ public class FileUploadAction extends BaseAction {
 	public String execute(){
 		return null;
 	}
-	public String uploadFile() throws Exception {
+	public void uploadFile() throws Exception {
+		String perSessionKey = this.getHttpServletRequest().getParameter("perSessionKey");
 		System.out.print("");
 		for(int i =1;i<=100;i++){
 			Thread.sleep(500);
-			this.getHttpServletRequest().getSession().setAttribute("per", i);
-			System.out.println("--"+this.getHttpServletRequest().getSession().getAttribute("per"));
+			this.getHttpServletRequest().getSession().setAttribute(perSessionKey, i);
+			System.out.println("--"+this.getHttpServletRequest().getSession().getAttribute(perSessionKey));
 		}
-		this.getHttpServletRequest().getSession().setAttribute("per", 0);
-		HttpServletResponse response = this.getHttpServletResponse();
-		String fullContentType = "text/html;charset=UTF-8";
-		response.setContentType(fullContentType);
-		response.setHeader("Pragma", "No-cache");
-		response.setHeader("Cache-Control", "no-cache");
-		response.setDateHeader("Expires", 0);
-		PrintWriter out = response.getWriter();
-		out.print("{\"hello\":\"gxl\"}");
-		out.flush();
-		out.close();
-		return NONE;
-	}
-	public void getPer() throws IOException{
-		HttpServletResponse response = this.getHttpServletResponse();
-		String fullContentType = "text/html;charset=UTF-8";
-		response.setContentType(fullContentType);
-		response.setHeader("Pragma", "No-cache");
-		response.setHeader("Cache-Control", "no-cache");
-		response.setDateHeader("Expires", 0);
-		PrintWriter out = response.getWriter();
-		System.out.println("xx--"+this.getHttpServletRequest().getSession().getAttribute("per"));
-		out.print(this.getHttpServletRequest().getSession().getAttribute("per"));
-		out.flush();
-		out.close();
+		//Ö´ÐÐÍê±Ï
+		this.getHttpServletRequest().getSession().setAttribute(perSessionKey, 0);
+		this.setAjax("200");
 	}
 }

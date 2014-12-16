@@ -1,5 +1,7 @@
 package com.ssh.baseaction;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Map;
 
 import javax.servlet.ServletContext;
@@ -92,5 +94,17 @@ public abstract class BaseAction extends ActionSupport implements RequestAware,S
 
 	public HttpServletResponse getHttpServletResponse() {
 		return httpServletResponse;
+	}
+	public void setAjax(String content) throws IOException{
+		HttpServletResponse response = this.getHttpServletResponse();
+		String fullContentType = "text/html;charset=UTF-8";
+		response.setContentType(fullContentType);
+		response.setHeader("Pragma", "No-cache");
+		response.setHeader("Cache-Control", "no-cache");
+		response.setDateHeader("Expires", -1);
+		PrintWriter out = response.getWriter();
+		out.print(content);
+		out.flush();
+		out.close();
 	}
 }

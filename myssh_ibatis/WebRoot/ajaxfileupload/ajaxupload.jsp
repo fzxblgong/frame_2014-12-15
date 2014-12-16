@@ -20,18 +20,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<script type="text/javascript" src="${pageContext.request.contextPath}/ajaxfileupload/jquery.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/ajaxfileupload/ajaxfileupload.js"></script>
 	<script type="text/javascript">
+	var gloabtime;
 	var interval;
 	function ajaxFileUpload()
-	{
-		$("#loading").ajaxStart(function(){
-			
-		}).ajaxComplete(function(){
-			clearInterval(interval);
+	{	
+		gloabtime = new Date().getTime();
+		var url = '${pageContext.request.contextPath}/file/uploadFile.do?perSessionKey='+gloabtime;
+		$("#loading")
+		.ajaxStart(function(){
+			//$(this).show();
+		})
+		.ajaxComplete(function(){
+			//$(this).hide();
 		});
+		
 		$.ajaxFileUpload
 		(
 			{
-				url:'${pageContext.request.contextPath}/file/uploadFile.do',
+				url:url,
 				secureuri:false,
 				fileElementId:'fileToUpload',
 				dataType: 'json',
@@ -58,25 +64,31 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		)
 		return false;
 	}
+	function getTimeOutPerInterval(){
+		setTimeout("getPerInterval()",5000);
+	}
 	//进度条比例
 	function getPerInterval(){
-			interval = setInterval('getPer()',1000);	
+			interval = setInterval('getPer()',3000);	
 		}
 		function getPer(){
 			//var per = $.ajax({url:"${pageContext.request.contextPath}/file/getPer.do",async:false});
+			var url = "${pageContext.request.contextPath}/fileper/getPer.do?perSessionKey="+gloabtime;
 			  $.ajax({
 	            type: "GET",
 	            async:false,
 	                dateType:"html",
-	                url: "${pageContext.request.contextPath}/fileper/getPer.do",
+	                url: url,
 	                error: function(msg) { alert("error"); },
 	                complete: function(msg) { 
-	                	if(msg.responseText == 0){
-	                		clearInterval(interval);
+	                	if(!isNaN(msg.responseText)){
+	                		if(msg.responseText == 0){
+		                		clearInterval(interval);
+		                	}
+		                	var per = Number(msg.responseText);
+		                	changePer(per*2);
+		                	$("#percentnum").html(per+"%");
 	                	}
-	                	var per = Number(msg.responseText);
-	                	changePer(per*2);
-	                	$("#percentnum").html(per+"%");
 	                 },
 	                success: function(msg) { 
 	                 }              
@@ -93,12 +105,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   //session.setAttribute("per",1);
   %>
     This is my JSP page. <br>
-    ${pageContext.request.contextPath} --
-    ${pageContext.request.contextPath}/file/fileAction.do-
     <img id="loading" src="${pageContext.request.contextPath}/ajaxfileupload/loading.gif" style="display:none;">
     <form name="form" action="" method="POST" enctype="multipart/form-data">
     <input id="fileToUpload" type="file" size="45" name="fileToUpload" class="input"/>
-    <button class="button" id="buttonUpload" onclick="getPerInterval();return ajaxFileUpload();">Upload</button>
+    <button class="button" id="buttonUpload" onclick="return ajaxFileUpload();">Upload</button>
     <div id ="percent" style="border:1px solid blue;width:200px;height:15px;" >
 	    <div id="percontent">
 	    </div>
@@ -106,5 +116,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <span id="percentnum">
     </span>
     </form>
+    <button class="button" id="buttonUpload" onclick="getPerInterval();">获得百分比测试</button>
   </body>
 </html>

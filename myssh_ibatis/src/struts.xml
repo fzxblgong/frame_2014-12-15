@@ -31,9 +31,6 @@
 
     --> 
 
-    <!-- 是否开启动态方法调用--> 
-
-    <constant name="struts.enable.DynamicMethodInvocation" value="false"/>
     
     <constant name="struts.multipart.saveDir" value="/tmp"/>
     
