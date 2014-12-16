@@ -6,7 +6,7 @@ version 1.x
 1.action,service,dao,支持spring业务类依赖注入。
 2.mybatis支持接口注释开发，支持sql mapper的xml配置开发。
 3.集成log4j配置输出文件。
-4.集成常用异步上传ajaxFileupload测试实例。
+4.集成常用异步上传ajaxFileupload测试实例。 测试路径：/ajaxfileupload/ajaxupload.jsp
 5.集成上传进度百分比进度测试实例。（ajax异步sessionkey计算）
 
 计划(未发布)：
