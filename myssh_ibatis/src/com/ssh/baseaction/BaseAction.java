@@ -95,6 +95,11 @@ public abstract class BaseAction extends ActionSupport implements RequestAware,S
 	public HttpServletResponse getHttpServletResponse() {
 		return httpServletResponse;
 	}
+	/**
+	 * ajax£¨response…Ë÷√
+	 * @param content
+	 * @throws IOException
+	 */
 	public void setAjax(String content) throws IOException{
 		HttpServletResponse response = this.getHttpServletResponse();
 		String fullContentType = "text/html;charset=UTF-8";
