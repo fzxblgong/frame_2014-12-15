@@ -13,7 +13,7 @@ ssm version v1.2 功能：
 4.集成常用异步上传ajaxFileupload测试实例。 测试路径：/ajaxfileupload/ajaxupload.jsp
 5.集成上传进度百分比进度测试实例。（ajax异步sessionkey计算）
 +6.集成jqueryminiui前端框架。
-+7.集成用户列表展示功能。（包括分页查询，分页排序，条件查询等）
++7.集成用户列表展示功能。（包括分页查询，分页排序，条件查询等）测试路径：/user/userlist.jsp
 
 ssm version 1.1 功能：
 1.action,service,dao,支持spring业务类注释方式依赖注入。 
