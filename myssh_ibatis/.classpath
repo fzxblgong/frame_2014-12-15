@@ -3,6 +3,7 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="melibrary.com.genuitec.eclipse.j2eedt.core.MYECLIPSE_JAVAEE_5_CONTAINER"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/flexjson-2.0.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/hibernate/antlr-2.7.7.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/hibernate/dom4j-1.6.1.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/hibernate/hibernate-commons-annotations-4.0.2.Final.jar"/>
@@ -14,9 +15,16 @@
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/hibernate/jboss-logging-3.1.0.GA.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/hibernate/jboss-transaction-api_1.1_spec-1.0.1.Final.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/hibernate/log4j-1.2.17.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/hibernate/slf4j-api-1.7.7.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/hibernate/slf4j-log4j12-1.7.7.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/mybatis-3.2.8.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/mybatis-spring-1.2.2.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/mysql/mysql-connector-java-5.1.11-bin.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/other/aopalliance.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/other/aspectjrt.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/other/aspectjweaver.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/spring/commons-dbcp.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/spring/commons-logging.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/spring/commons-pool.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/spring/spring-aop-3.2.9.RELEASE.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/spring/spring-aspects-3.2.9.RELEASE.jar"/>
@@ -34,6 +42,7 @@
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/spring/spring-orm-3.2.9.RELEASE.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/spring/spring-oxm-3.2.9.RELEASE.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/spring/spring-struts-3.2.9.RELEASE.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/spring/spring-test-3.2.9.RELEASE.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/spring/spring-tx-3.2.9.RELEASE.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/spring/spring-web-3.2.9.RELEASE.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/spring/spring-webmvc-3.2.9.RELEASE.jar"/>
@@ -49,16 +58,10 @@
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/struts/javassist-3.11.0.GA.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/struts/log4j-1.2.17.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/struts/ognl-3.0.6.jar"/>
+	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/struts/struts2-convention-plugin-2.3.16.3.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/struts/struts2-core-2.3.16.3.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/struts/xwork-core-2.3.16.3.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/struts-spring-plug/struts2-spring-plugin-2.3.16.3.jar"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/other/aopalliance.jar"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/other/aspectjrt.jar"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/other/aspectjweaver.jar"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/struts/struts2-convention-plugin-2.3.16.3.jar"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/mybatis-3.2.8.jar"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/mybatis-spring-1.2.2.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
-	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/flexjson-2.0.jar"/>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>
