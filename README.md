@@ -1,6 +1,5 @@
 struts2.3+spring3.0+mybatis-3.2.8 项目开发框架
 
-mybatis 
 
 一.spring配置数据源文件：/src/beans.xml
 
@@ -30,3 +29,13 @@ version 3.x
 
 version 4.x
 1.加入maven管理。
+
+三：运行环境
+
+1.JDK "1.6.0_10-rc2";
+2.MyEclipse6.5;
+3.Tomcat6.0;
+4.MySql5.0;
+5.Windows7 32bit.
+
+注：因为jqueryminiui分Eclipse和Myeclipse版本，我集成的是Meclipse版本，虽然我没试过eclipse是否正常，但为了测试稳定最好用Myeclipse试下，谢谢。
