@@ -3,6 +3,7 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="con" path="melibrary.com.genuitec.eclipse.j2eedt.core.MYECLIPSE_JAVAEE_5_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/flexjson-2.0.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/hibernate/antlr-2.7.7.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/hibernate/dom4j-1.6.1.jar"/>
@@ -62,6 +63,5 @@
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/struts/struts2-core-2.3.16.3.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/struts/xwork-core-2.3.16.3.jar"/>
 	<classpathentry kind="lib" path="WebRoot/WEB-INF/lib/struts-spring-plug/struts2-spring-plugin-2.3.16.3.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="WebRoot/WEB-INF/classes"/>
 </classpath>

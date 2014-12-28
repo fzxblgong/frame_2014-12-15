@@ -2,12 +2,12 @@
 <project-module
   type="WEB"
   name="myssh_ibatis"
-  id="myeclipse.1419177638280"
+  id="myeclipse.1415504450614"
   context-root="/myssh_ibatis"
   j2ee-spec="5.0"
   archive="myssh_ibatis.war">
   <attributes>
-    <attribute name="webrootdir" value="WebRoot" />
+    <attribute name="webrootdir" value="/WebRoot" />
   </attributes>
 </project-module>
 

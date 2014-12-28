@@ -66,4 +66,35 @@
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
        <constructor-arg index="0" ref="sqlSessionFactory" />
     </bean>
+    
+      <!-- hibernate配置 -->
+    <bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<!-- 此配置为扫描com包下的n级model包下的实体，根据具体项目修改 -->
+		<property name="packagesToScan" value="com.**.model" />
+		<property name="hibernateProperties">
+			<props>
+				<!-- Oracle的方言 
+				<prop key="hibernate.dialect">org.hibernate.dialect.OracleDialect</prop>
+				 -->
+				<!-- Mysql的方言 -->
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.MySQLDialect
+				</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.format_sql">true</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+			</props>
+		</property>
+	</bean>
+	<!-- <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"> 
+		<property name="dataSource" ref="dataSource"/> </bean> -->
+	<bean id="txManager"
+		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory">
+			<ref local="sessionFactory" />
+		</property>
+	</bean>
+	<tx:annotation-driven transaction-manager="txManager" />
 </beans>

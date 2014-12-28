@@ -54,4 +54,9 @@
       <result name="success">/index.jsp</result>
     </action>
   </package>
+  <package name="organization" namespace="/organization" extends="struts-default">
+  	<action name="*" class="com.myssh.action.OrganizationAction" method="{1}">
+      <result name="to_organization_tree">/organization/authority_tree.jsp</result>
+    </action>
+  </package>
 </struts>
