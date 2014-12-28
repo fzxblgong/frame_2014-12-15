@@ -1,10 +1,11 @@
-struts2.3+spring3.0+mybatis-3.2.8 项目开发框架
+struts2.3+spring3.0+mybatis-3.2.8+hibernate4项目开发基础框架
 
 
 一.spring配置数据源文件：/src/beans.xml
 
-1.测试数据库可执行/docs/mybatis.sql。
+1.测试数据库文件请执行/docs/mybatis.sql。
 2.可根据情况修改自己测试的数据库ip和连接方式。
+注：配置文件已经提供Oracle的连接方式并经过测试，只要打开相应注释即可，但相关表的建立还需要您自己完成。目前提供的数据库测试数据为Mysql5.0版。
 
 
 二.版本
