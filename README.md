@@ -9,14 +9,19 @@ struts2.3+spring3.0+mybatis-3.2.8 项目开发框架
 
 二.版本
 
-ssm version v1.2 功能：
+ssm version v1.3 功能
+
+新增：
++8.框架在支持mybatis-3.2.8基础上又整合进hibernate4，并支持注释。
++9.使用注释ssh方式实现JqueryMiniUi多选树。实例路径：/organization/organization_tree.jsp
+
 1.action,service,dao,支持spring业务类注释方式依赖注入。 
 2.mybatis支持接口注释开发，支持sql mapper的xml配置开发。 
 3.集成log4j配置输出文件。 
 4.集成常用异步上传ajaxFileupload测试实例。 测试路径：/ajaxfileupload/ajaxupload.jsp
 5.集成上传进度百分比进度测试实例。（ajax异步sessionkey计算）
-+6.集成jqueryminiui前端框架。
-+7.集成用户列表展示功能。（包括分页查询，分页排序，条件查询等）测试路径：/user/userlist.jsp
+6.集成JqueryMiniUi前端框架。
+7.集成用户列表展示功能。（包括分页查询，分页排序，条件查询，按列排序）测试路径：/user/userlist.jsp
 
 
 计划(未发布)：
