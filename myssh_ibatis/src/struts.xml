@@ -37,6 +37,8 @@
   <package name="user" namespace="/user" extends="struts-default">
   	<action name="*" class="com.mybatis.action.UserAction" method="{1}">
       <result name="success">/page.jsp</result>
+      <!-- baidu分页模仿 -->
+      <result name="page_user_list">/baidupage/baidupage_test.jsp</result>
     </action>
   </package>
   <package name="file" namespace="/file" extends="struts-default">

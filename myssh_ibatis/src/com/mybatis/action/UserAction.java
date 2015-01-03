@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.mybatis.dao.UserMapper;
 import com.ssh.baseaction.BaseAction;
+import com.ssh.basevo.PageBean;
 
 public class UserAction extends BaseAction {
 	@Autowired
@@ -71,5 +72,33 @@ public class UserAction extends BaseAction {
 
 		String json = com.util.JSON.Encode(result);
 		this.setAjax(json);
+	}
+	public String getBaiduPageList() throws IOException {
+		// 查询条件
+		String name = this.getHttpServletRequest().getParameter("name");
+		// 分页
+		Long currentPage = Long.parseLong(this.getHttpServletRequest().getParameter("currentPage"));
+		Long pageLine = Long.parseLong(this.getHttpServletRequest().getParameter("pageLine"));
+		
+		// 数量查询参数
+		Map<String, Object> countParam = new HashMap<String, Object>();
+		countParam.put("name", name);
+		
+		Integer userCount = userMapper.countByExample(countParam);
+		Long totalCount =Long.valueOf(userCount + "");
+		PageBean pageBean = new PageBean(totalCount,pageLine,currentPage);
+		// 数据查询参数
+		Map<String, Object> listParam = new HashMap<String, Object>();
+		listParam.put("start", pageBean.getStart());
+		listParam.put("end", pageBean.getEnd());
+		listParam.put("name", name);
+		
+		List<Map<String, Object>> userMapList = userMapper
+				.selectByExample(listParam);
+		
+		String pageInfo = pageBean.getPageInfo();
+		this.getHttpServletRequest().setAttribute("userMapList", userMapList);
+		this.getHttpServletRequest().setAttribute("pageInfo", pageInfo);
+		return "page_user_list";
 	}
 }

@@ -3,6 +3,8 @@ package com.ssh.basevo;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.Test;
+
 
 public class PageBean {
 	private Long totalCount;//总记录数
@@ -13,7 +15,7 @@ public class PageBean {
 	private Long end;//查询结束点
 	
 	private List list;//查询的结果封装集合
-	private List<Long> pageNumerList = new ArrayList<Long>();//页码集合
+	private List<Long> pageNumerList;//页码集合
 	public PageBean(){
 	}
 	/**
@@ -31,17 +33,6 @@ public class PageBean {
 		this.start = this.countStart(this.getCurrentPage(),this.getPageLine());
 		this.end = this.countEnd(this.getCurrentPage(),this.getPageLine());
 		
-	}
-	/**
-	 * 每次调用set相关参数时将刷新分页参数
-	 */
-	private void refreshPageParameter(){
-		this.totalCount = this.getTotalCount();
-		this.pageLine = ((null == this.getPageLine()) ? 10 : this.getPageLine());//(默认10条记录)
-		this.pageNum = this.countPageNum(this.getTotalCount(),this.getPageLine());
-		this.currentPage = ((null == this.getCurrentPage() || this.getCurrentPage() < 1) ? 1 : ((this.getCurrentPage() > this.getPageNum()) ? this.getPageNum() : this.getCurrentPage()));//(默认第1页),如果大于了最大页数，那么就展示末页
-		this.start = this.countStart(this.getCurrentPage(),this.getPageLine());
-		this.end = this.countEnd(this.getCurrentPage(),this.getPageLine());
 	}
 	/**
 	 * 计算分页总数
@@ -63,23 +54,63 @@ public class PageBean {
 	 * @param pageNum
 	 */
 	public void initPageNumerList(Long pageNum,Long currentPage){
-		int number = 5;//默认初始化的页签个数
+		List<Long> pageNumerList = new ArrayList<Long>();//页码集合
+		int number = 3;//默认初始化的页签个数
 		int mid = number/2;//前后位差
 		
 		long first =  (currentPage - mid);//起始页码
 		long last =  (currentPage + mid);//结束页码
+		if((number % 2 == 0) && mid > 0){
+			last = last - 1;
+		}
 		if(first < 1){
+			long range = 1 - first;
 			first = 1;
-			last = last + (1 - first);
+			last = last + range;//尾部补全
 		}
 		if(last > pageNum){
+			long range = last - pageNum;
 			last = pageNum;
-		}
-		for(long i = first;i<last;i++){
-			if(i<pageNum){
-				pageNumerList.add(i);
+			first = first - range;
+			if(first < 1){
+				first = 1;
 			}
 		}
+		for(long i = first;i<=last;i++){
+			pageNumerList.add(i);
+		}
+		this.setPageNumerList(pageNumerList);
+	}
+	/**
+	 * baidu页码html信息
+	 * @return
+	 */
+	public String getPageInfo(){
+		String split = "\r\n";
+		StringBuffer sb = new StringBuffer();
+		List<Long> pageNumberList = this.getPageNumerList();
+		Long pageLine = this.getPageLine();
+		Long currentPage = this.getCurrentPage();
+		Long pageNum = this.getPageNum();
+		sb.append("<a href=user/getBaiduPageList.do?pageLine="+pageLine+"&currentPage=1>首页</a>").append(split);
+		if(currentPage != 1){
+			//上页
+			sb.append("<a href=user/getBaiduPageList.do?pageLine="+pageLine+"&currentPage=" + (currentPage - 1) + ">上一页</a>").append(split);
+		}
+		for(int i = 0;i<pageNumberList.size();i++){
+			Long currentPageTemp = pageNumberList.get(i);
+			if(currentPageTemp != currentPage){
+				sb.append("<a href=user/getBaiduPageList.do?pageLine="+pageLine+"&currentPage=" + currentPageTemp + ">"+currentPageTemp+"</a>").append(split);
+			}else{
+				sb.append(pageNumberList.get(i)).append(split);
+			}
+		}
+		if(currentPage != pageNum){
+			//下页
+			sb.append("<a href=user/getBaiduPageList.do?pageLine="+pageLine+"&currentPage=" + (currentPage + 1) + ">下一页</a>").append(split);
+		}
+		sb.append("<a href=user/getBaiduPageList.do?pageLine="+pageLine+"&currentPage="+pageNum+">尾页</a>").append(split);
+		return sb.toString();
 	}
 	/**
 	 * 计算查询起始点
@@ -88,7 +119,8 @@ public class PageBean {
 	 * @return
 	 */
 	public Long countStart(Long currentPage,Long pageLine){
-		long start = (currentPage - 1)*pageLine + 1;
+		//MYSQL start 0 开始
+		long start = (currentPage - 1)*pageLine;
 		return start;
 	}
 	/**
@@ -151,6 +183,24 @@ public class PageBean {
 	public void setList(List list) {
 		this.list = list;
 	}
+	public List<Long> getPageNumerList() {
+		return pageNumerList;
+	}
+	public void setPageNumerList(List<Long> pageNumerList) {
+		this.pageNumerList = pageNumerList;
+	}
+	@Test
+	public void test(){
+		PageBean pb = new PageBean(100l,5l,22l);
+		List<Long> pblist = pb.getPageNumerList();
+		for(Long l : pblist){
+			System.out.println(l);
+		}
+		System.out.println(pb);
+		String sb = pb.getPageInfo();
+		System.out.println(sb);
+	}
+	
 	@Override
 	public String toString() {
 		String rn = "\r\n";
@@ -172,11 +222,4 @@ public class PageBean {
 		info += "end:"+this.getEnd();
 		return info;
 	}
-	public List<Long> getPageNumerList() {
-		return pageNumerList;
-	}
-	public void setPageNumerList(List<Long> pageNumerList) {
-		this.pageNumerList = pageNumerList;
-	}
-	
 }
