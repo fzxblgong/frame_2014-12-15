@@ -20,6 +20,17 @@
 	<!-- 
 	<context:property-placeholder location="classpath:config/jdbc.properties"/>
 	 -->
+	 <!--Oracle data source  
+	 <context:property-placeholder location="classpath:database.properties" />
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="${driverClassName}"></property>
+		<property name="url" value="${url}"></property>
+		<property name="username" value="user1"></property>
+		<property name="password" value="admin"></property>
+		<property name="maxActive" value="${p.maxActive}"></property>
+		<property name="minIdle" value="${p.minIdle}"></property>
+	</bean>-->	
+	<!-- MySql datasource -->
 	<bean id="dataSource"
 		class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
@@ -29,6 +40,7 @@
 		<property name="username" value="root" />
 		<property name="password" value="admin" />
 	</bean>
+	
 	<bean id="sqlSessionFactory"
 		class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
@@ -76,12 +88,14 @@
 		<property name="hibernateProperties">
 			<props>
 				<!-- Oracle的方言 
-				<prop key="hibernate.dialect">org.hibernate.dialect.OracleDialect</prop>
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.OracleDialect
+				</prop>
 				 -->
-				<!-- Mysql的方言 -->
+				<!-- Mysql的方言-->
 				<prop key="hibernate.dialect">
 					org.hibernate.dialect.MySQLDialect
-				</prop>
+				</prop> 
 				<prop key="hibernate.show_sql">true</prop>
 				<prop key="hibernate.format_sql">true</prop>
 				<prop key="hibernate.hbm2ddl.auto">update</prop>
