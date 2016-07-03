@@ -2,9 +2,11 @@ package com.util;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 public class Test {
+	public Test(){
+		System.out.println("åˆå§‹åŒ–ï¼š"+Test.class.toString());
+	}
 	@org.junit.Test
 	public void test() {
 		String formatStr1 = "yyyy/MM/dd HH:mm";
@@ -37,9 +39,13 @@ public class Test {
 	          format.parse(str);
 	       } catch (ParseException e) {
 	          // e.printStackTrace();
-	// Èç¹ûthrow java.text.ParseException»òÕßNullPointerException£¬¾ÍËµÃ÷¸ñÊ½²»¶Ô
+	// ï¿½ï¿½ï¿½throw java.text.ParseExceptionï¿½ï¿½ï¿½ï¿½NullPointerExceptionï¿½ï¿½ï¿½ï¿½Ëµï¿½ï¿½ï¿½ï¿½Ê½ï¿½ï¿½ï¿½ï¿½
 	           convertSuccess=false;
 	       } 
 	       return convertSuccess;
+	}
+	//æ—¥æœŸæ—¶é—´æµ‹è¯•
+	public void updateRoleId(){
+		System.out.println("æ—¶é—´æµ‹è¯•ã€‚ã€‚ã€‚");
 	}
 }
