@@ -249,8 +249,11 @@ public class HttpRequestUtil {
         //demo:代理访问
         String url = "http://api.adf.ly/api.php";
         String para = "key=youkeyid&youuid=uid&advert_type=int&domain=adf.ly&url=http://somewebsite.com";
-          
-        String sr=HttpRequestUtil.sendPost(url,para,true);
+        
+        String url2 = "http://127.0.0.1:8888/BOSP_2/RuleExamineAction.do";
+//        String sr=HttpRequestUtil.sendPost(url,para,true);
+        para = "cmd=listBusinessTypePage";
+        String sr=HttpRequestUtil.sendGet(url2,para);
         System.out.println(sr);
     }
       
