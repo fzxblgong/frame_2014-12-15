@@ -1,5 +1,6 @@
 <%@ page language="java" import="java.util.*" pageEncoding="GB18030"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="/WEB-INF/custom.tld" prefix="ht"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -22,6 +23,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
+  <ht:hellotag message="hell,my tag test...">
+  </ht:hellotag>
     This is my index JSP page. <br>
     ${applicationScope.rootPath }--
   </body>
